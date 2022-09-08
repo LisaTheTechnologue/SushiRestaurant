@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layouts/main-layout :: main-fragment(  
+      ~{::title},
+      ~{:: #home-static-resources},
+      ~{:: #home-main-content},  
+      ~{:: #home-footer}
+      )}">
+    <head>
+        <title>Home</title>
+        <th:block id="home-static-resources">
+            <script>
+                $(document).ready(function () {
+                    // create references to the modal...
+                    var modal = document.getElementById('myModal');
+// to all images -- note I'm using a class!
+                    var images = document.getElementsByClassName('myImages');
+// the image in the modal
+                    var modalImg = document.getElementById("img01");
+// and the caption in the modal
+                    var captionText = document.getElementById("caption");
+
+// Go through all of the images with our custom class
+                    for (var i = 0; i < images.length; i++) {
+                        var img = images[i];
+                        // and attach our click listener for this image.
+                        img.onclick = function (evt) {
+                            console.log(evt);
+                            modal.style.display = "block";
+                            modalImg.src = this.src;
+                            captionText.innerHTML = this.alt;
+                        };
+                    }
+
+                    var span = document.getElementsByClassName("close")[0];
+
+                    span.onclick = function () {
+                        modal.style.display = "none";
+                    };
+
+                });
+            </script> 
+
+        </th:block>
+    </head>
+    <body >
+
+        <!-- Blog main content -->
+        <div id="home-main-content">
+            <img class="myImages img-fluid" id="homeImg1" src="../images/home_sushi.jpg" alt="The Sushi Restaurant" />
+            <div th:replace="~{/fragments/app-fragments :: pic-modal}"></div>
+
+            <hr/>
+            <h3>24 types of sushi rolls</h3>
+            <div class="row">
+                <div class="col-5">
+                    <img class="myImages img-fluid" id="homeImg2" src="../images/home_sushitypes.jpg" alt="Sushi Types" />
+                    <div th:replace="~{/fragments/app-fragments :: pic-modal}"></div>
+                </div>
+                <div class="col-7">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dictum, nulla vitae bibendum mollis, magna ipsum iaculis mauris, eu laoreet nisl nibh quis ante. Integer pulvinar ex metus, vitae sollicitudin dolor molestie sed. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In non magna id ex dignissim ornare in ultrices odio. Aenean felis dolor, porta eu faucibus et, ullamcorper ac urna. Ut non eros eu purus facilisis commodo. Nulla quis nulla ante. Nullam consequat ligula velit, sit amet posuere mauris porttitor condimentum. Sed mattis lorem neque, et convallis odio pellentesque sit amet. Integer congue finibus felis, id malesuada quam scelerisque eu. Suspendisse elementum ligula eu ultrices hendrerit. Vivamus eu turpis nec sapien accumsan posuere. Praesent ac velit risus.
+                </div>
+            </div>
+        </div>             
+
+        <div id="home-footer" th:replace="~{/fragments/app-fragments :: user-tracker}">
+            Footer
+        </div>
+
+    </body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layouts/main-layout :: main-fragment(  
+      ~{::title},
+      ~{:: #menu-static-resources},
+      ~{:: #menu-main-content},  
+      ~{:: #menu-footer}
+      )}">
+    <head>
+        <title>Menu</title>
+        <th:block id="menu-static-resources"> 
+            <link rel="stylesheet" type="text/css" th:href="@{/css/menu-style.css}" href="../../static/css/fragment-style.css"/>
+
+        </th:block>
+    </head>
+    <body >
+
+        <!-- Blog main content -->
+        <div id="menu-main-content">
+            <h1 class="page-title">Menu and Price list</h1>
+            <div class="content" th:each="menu : ${menus}">
+                <hr class="menu-hr-separator"/>
+                <div class="row">
+                    <div class="col-10">Menu</div>
+                    <div class="col-2">Price</div>
+                </div>
+                <hr class="menu-hr"/>
+                <div class="row">
+                    <div class="col-10" th:text="${menu.title}"/>
+                    <div class="col-2" th:text="${menu.price}"/>
+                </div>
+                <div th:text="${menu.menu_desc}"/>
+            </div>
+        </div>             
+
+        <div id="menu-footer" th:replace="~{/fragments/app-fragments :: user-tracker}">
+            Footer
+        </div>
+
+    </body>
+
+</html>

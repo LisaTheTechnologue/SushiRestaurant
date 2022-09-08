@@ -1,0 +1,7 @@
+.content > .menu-hr-separator {
+    border-top: 1px dotted grey;
+}
+
+.content > .menu-hr {
+    border-top: 1px solid grey;
+}
